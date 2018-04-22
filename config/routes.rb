@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
-  root to: 'pages#home'
+  resources :watch_lists
+
+  devise_for :users
+  root to: 'home#index'
 end
