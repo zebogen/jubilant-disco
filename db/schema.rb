@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018020854) do
+ActiveRecord::Schema.define(version: 20180422011803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20171018020854) do
     t.integer "tmdb_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "tmdb_json"
     t.index ["tmdb_id"], name: "index_movies_on_tmdb_id"
   end
 
