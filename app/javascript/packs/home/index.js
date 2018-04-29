@@ -1,4 +1,4 @@
 import ReactOnRails from 'react-on-rails';
-import HomeContainer from 'src/Home/containers/HomeContainer';
+import Root from 'src/Root';
 
-ReactOnRails.register({ HomeContainer });
+ReactOnRails.register({ Root });

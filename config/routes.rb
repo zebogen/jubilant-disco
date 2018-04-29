@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   post "/graphql", to: "graphql#execute"
-  resources :watch_lists
+  resource :watch_lists, only: :show
 
   devise_for :users
   root to: 'home#index'
