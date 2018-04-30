@@ -11,14 +11,16 @@ class TmdbClient
 
   def search(query)
     parse_response(
-      HTTParty.get(api_url(MOVIE_SEARCH_ENDPOINT, query: query))
+      HTTParty.get(api_url(MOVIE_SEARCH_ENDPOINT, query))
     )
   end
 
   private
 
   def parse_response(response)
-    AccessorHash.new(JSON.parse(response.body, symbolize_names: true))
+    StructCreator.call(
+      JSON.parse(response.body, symbolize_names: true)
+    )
   end
 
   def api_url(endpoint, params = {})

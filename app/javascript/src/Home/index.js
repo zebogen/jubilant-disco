@@ -1,36 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Header, Menu } from 'semantic-ui-react';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-
-const getMovies = gql`
-  {
-    movies {
-      id
-      title
-    }
-  }
-`
-
-const getWatchLists = gql`
-  {
-    watch_lists {
-      id
-      name
-      movies {
-        id
-        title
-      }
-    }
-  }
-`
+import getMovies from 'src/queries/getMovies';
+import getWatchLists from 'src/queries/getWatchLists';
 
 class Home extends React.Component {
-  state = {
-    foo: "bar",
-  };
-
   render() {
     return (
       <Query query={getWatchLists}>

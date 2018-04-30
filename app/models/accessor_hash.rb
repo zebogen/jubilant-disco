@@ -11,9 +11,11 @@ class AccessorHash
   attr_reader :hash
 
   def parse_hash!
+    values = {}
     hash.each do |(key, value)|
+      values[key] = parse_value(value)
       AccessorHash.instance_eval do
-        define_method(key) { parse_value(value) }
+        define_method(key) { values[key] }
       end
     end
   end

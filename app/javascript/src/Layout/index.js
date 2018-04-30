@@ -22,6 +22,12 @@ const Layout = ({ children, loggedIn }) => (
       >
         <Link to="/watchLists">Watch Lists</Link>
       </Menu.Item>
+      <Menu.Item
+        name="search"
+        active={false}
+      >
+        <Link to="/search">Search</Link>
+      </Menu.Item>
       {!loggedIn && (
         <Menu.Menu>
           <Menu.Item name="signin" active={false} link>
