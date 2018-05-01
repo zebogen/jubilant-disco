@@ -10,17 +10,21 @@ class TmdbClient
   end
 
   def search(query)
-    parse_response(
+    parsed_response = parse_response(
       HTTParty.get(api_url(MOVIE_SEARCH_ENDPOINT, query))
     )
+
+    parsed_response[:results].each do |movie|
+      Movie.find_or_create_by!(tmdb_id: movie[:id])
+    end
+
+    parsed_response
   end
 
   private
 
   def parse_response(response)
-    StructCreator.call(
-      JSON.parse(response.body, symbolize_names: true)
-    )
+    JSON.parse(response.body, symbolize_names: true)
   end
 
   def api_url(endpoint, params = {})

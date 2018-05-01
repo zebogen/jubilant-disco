@@ -14,7 +14,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
 
   field :movie, Types::MovieType do
-    argument :id, !types.Id
+    argument :id, !types.ID
 
     resolve ->(obj, args, ctx) {
       Movie.find_by(tmdb_id: args[:id])
@@ -26,7 +26,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :page, types.Int, default_value: 1
 
     resolve ->(obj, args, ctx) {
-      TmdbClient.new.search(query: args[:query], page: args[:page])
+      StructCreator.call(TmdbClient.new.search(query: args[:query], page: args[:page]))
     }
   end
 end

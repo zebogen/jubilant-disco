@@ -8,13 +8,15 @@ import WatchLists from 'src/WatchLists';
 import Layout from 'src/Layout';
 import Search from 'src/Search';
 import Movie from 'src/Movie';
+import NavBar from 'src/NavBar';
 
 const client = createClient();
 
-const Root = ({ currentUser, initialPath }) => (
+const Root = ({ currentUser }) => (
   <ApolloProvider client={client}>
     <BrowserRouter>
-      <Layout loggedIn={!!currentUser}>
+      <Layout>
+        <Route path="/*" render={props => <NavBar {...props} loggedIn={!!currentUser} />} />
         <Route exact path="/" component={Home} />
         <Route path="/watchLists" component={WatchLists} />
         <Route path="/search" component={Search} />

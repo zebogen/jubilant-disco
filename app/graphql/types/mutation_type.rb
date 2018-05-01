@@ -8,4 +8,12 @@ Types::MutationType = GraphQL::ObjectType.define do
       current_user.watch_lists.create!(name: args[:name])
     }
   end
+
+  # field :create_movie, Types::MovieType do
+  #   argument :tmdb_id, !types.Id
+
+  #   resolve ->(obj, args, ctx) {
+  #     # Movie.create!()
+  #   }
+  # end
 end
