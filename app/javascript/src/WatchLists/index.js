@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import getWatchLists from 'src/queries/getWatchLists';
+import WatchListForm from 'src/WatchLists/components/WatchListForm';
 
 const WatchLists = () => (
   <div className="watchLists">
@@ -21,6 +22,9 @@ const WatchLists = () => (
         ))
       }}
     </Query>
+
+    <h3>Create a watch list</h3>
+    <WatchListForm />
   </div>
 );
 

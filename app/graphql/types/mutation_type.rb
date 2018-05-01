@@ -5,7 +5,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :name, !types.String
 
     resolve ->(obj, args, ctx) {
-      current_user.watch_lists.create!(name: args[:name])
+      ctx[:current_user].watch_lists.create!(name: args[:name])
     }
   end
 
