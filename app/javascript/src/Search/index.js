@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
-import searchMovies from 'src/queries/searchMovies';
+import Results from 'src/Search/components/Results';
 
 class Search extends React.Component {
   state = {
@@ -32,26 +29,12 @@ class Search extends React.Component {
     return (
       <div className="search">
         <Form onSubmit={this.handleSubmit}>
-          <Form.Input label="Search" type="text" onChange={this.handleSearchInput} />
+          <Form.Input label="Search" type="text" onChange={this.handleSearchInput} value={searchInput} />
           <Button>Search</Button>
         </Form>
         <div className="search__results">
           <h3>Results</h3>
-          {searchString && (
-            <Query query={searchMovies(searchString)}>
-              {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error :(</p>;
-
-                return data.tmdb_movies.results.map(({ id, title, overview, release_date }) => (
-                  <div key={id} className="search__results__item">
-                    <Link to={`/movies/${id}`}>{title} ({release_date})</Link>
-                    <p>{overview}</p>
-                  </div>
-                ))
-              }}
-            </Query>
-          )}
+          {searchString && <Results query={searchString} />}
         </div>
       </div>
     );

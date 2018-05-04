@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  mutation create_watch_list($name: String!) {
-    create_watch_list(name: $name) {
+  mutation createWatchList($name: String!) {
+    createWatchList(name: $name) {
       id
       name
     }

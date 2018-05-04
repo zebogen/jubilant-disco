@@ -1,7 +1,7 @@
 Types::QueryType = GraphQL::ObjectType.define do
   name 'Query'
 
-  field :watch_lists, !types[Types::WatchListType] do
+  field :watchLists, !types[Types::WatchListType] do
     resolve ->(obj, args, ctx) {
       ctx[:current_user].watch_lists
     }
@@ -21,7 +21,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :tmdb_movies, Types::TmdbSearchType do
+  field :tmdbMovies, Types::TmdbSearchType do
     argument :query, !types.String
     argument :page, types.Int, default_value: 1
 

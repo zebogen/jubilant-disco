@@ -11,7 +11,7 @@ const WatchLists = () => (
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error :(</p>;
 
-        return data.watch_lists.map(({ id, name, movies }) => (
+        return data.watchLists.map(({ id, name, movies }) => (
           <div key={id}>
             <p>Name: {name}</p>
             <p>Movies: </p>

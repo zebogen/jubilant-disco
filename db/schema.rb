@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20180422011803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["movie_id"], name: "index_watch_list_movies_on_movie_id"
+    t.index ["watch_list_id", "movie_id"], name: "index_watch_list_movies_on_watch_list_id_and_movie_id", unique: true
     t.index ["watch_list_id"], name: "index_watch_list_movies_on_watch_list_id"
   end
 

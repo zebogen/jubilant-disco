@@ -1,6 +1,6 @@
 def tmdb_json_resolver(field)
   ->(obj, args, ctx) {
-    obj.tmdb_json.dig(field)
+    obj.tmdb_json&.dig(field)
   }
 end
 
@@ -9,7 +9,7 @@ Types::MovieType = GraphQL::ObjectType.define do
 
   field :id, !types.ID
   field :tmdb_id, !types.String
-  field :title, !types.String do
+  field :title, types.String do
     resolve tmdb_json_resolver('title')
   end
   field :backdrop_path, types.String do

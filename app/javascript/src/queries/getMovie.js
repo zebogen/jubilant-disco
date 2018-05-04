@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
-export default id => gql`
-  {
-    movie(id: ${id}) {
+export default gql`
+  query GetMovie($id: ID!) {
+    getMovie(id: $id) {
       id
       tmdb_id
       title
