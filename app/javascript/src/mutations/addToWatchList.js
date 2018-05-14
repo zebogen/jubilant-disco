@@ -6,7 +6,7 @@ export default gql`
       id
       name
       movies {
-        id
+        tmdb_id
       }
     }
   }

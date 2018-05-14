@@ -1,0 +1,13 @@
+{
+  "presets": [
+    "react",
+    "env"
+  ],
+  "plugins": [
+    ["babel-root-slash-import", { "rootPathSuffix": "app/javascript/src" }],
+    "syntax-dynamic-import",
+    "transform-object-rest-spread",
+    ["transform-class-properties", { "spec": true }],
+    ["transform-do-expressions"]
+  ]
+}

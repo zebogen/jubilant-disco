@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import WatchListMovie from '/fragments/WatchListMovie';
 
 const getWatchLists = gql`
   {
@@ -6,28 +7,11 @@ const getWatchLists = gql`
       id
       name
       movies {
-        id
-        tmdb_id
-        title
-        backdrop_path
-        budget
-        genres {
-          id
-          name
-        }
-        imdb_id
-        overview
-        popularity
-        poster_path
-        release_date
-        revenue
-        runtime
-        status
-        tagline
-        vote_average
+        ...WatchListMovie
       }
     }
   }
+  ${WatchListMovie}
 `
 
 export default getWatchLists;
