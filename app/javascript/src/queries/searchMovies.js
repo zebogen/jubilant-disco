@@ -12,6 +12,7 @@ export default gql`
         popularity
         overview
         release_date
+        poster_path
       }
     }
   }

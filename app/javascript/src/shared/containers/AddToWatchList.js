@@ -19,6 +19,7 @@ class AddToWatchList extends React.Component {
 
   submitHandler = mutate => (event) => {
     event.preventDefault();
+    const { selectedWatchListId } = this.state;
     mutate({
       // refetchQueries: [{ query: getWatchLists }],
       variables: {
@@ -29,7 +30,7 @@ class AddToWatchList extends React.Component {
         const data = proxy.readQuery({ query: getWatchLists });
         proxy.writeQuery({
           watchLists: data.watchLists.map(list => (
-            list.id === this.state.selectedWatchListId
+            list.id === selectedWatchListId
               ? addToWatchList
               : list
           )),
@@ -64,7 +65,7 @@ class AddToWatchList extends React.Component {
           <Form onSubmit={this.submitHandler(addToWatchList)}>
             {options.length > 0
               ? <React.Fragment>
-                  <Form.Select label="Watch List" options={options} onChange={this.handleChange} />
+                  <Form.Select label="Add to Watch List" options={options} onChange={this.handleChange} />
                   <Button disabled={data.loading} type="submit">Add</Button>
                 </React.Fragment>
               : 'This movie is already in all your watch lists.'}

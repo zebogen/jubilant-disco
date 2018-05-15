@@ -1,14 +1,11 @@
 import gql from 'graphql-tag';
+import WatchListMovie from '/fragments/WatchListMovie';
 
 export default gql`
   query GetMovie($id: ID!) {
-    getMovie(id: $id) {
-      id
-      tmdb_id
-      title
-      overview
-      release_date
-      poster_path
+    movie(id: $id) {
+      ...WatchListMovie
     }
   }
+  ${WatchListMovie}
 `

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
+import { Card } from 'semantic-ui-react';
 import searchMovies from 'src/queries/searchMovies';
 import MovieResult from 'src/Search/components/MovieResult';
 
@@ -19,7 +20,9 @@ const Results = ({
         } else if (error) {
           <p>Error :(</p>;
         } else {
-          tmdbMovies.results.map(movie => <MovieResult key={movie.id} movie={movie} />)
+          <Card.Group>
+            {tmdbMovies.results.map(movie => <MovieResult key={movie.id} movie={movie} />)}
+          </Card.Group>
         }
       }}
     </div>
