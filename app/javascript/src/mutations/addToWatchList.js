@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import WatchListMovie from '/fragments/WatchListMovie';
 
 export default gql`
   mutation addToWatchList($watchListId: ID!, $tmdbId: ID!) {
@@ -6,9 +7,9 @@ export default gql`
       id
       name
       movies {
-        id
-        tmdb_id
+        ...WatchListMovie
       }
     }
   }
+  ${WatchListMovie}
 `

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card } from 'semantic-ui-react';
-import AddToWatchList from 'src/Search/components/AddToWatchList';
+import AddToWatchList from '/shared/containers/AddToWatchList';
 import TmdbImage from '/shared/components/TmdbImage';
 
 const MovieResult = ({
@@ -15,7 +15,7 @@ const MovieResult = ({
   },
 }) => (
   <Card>
-    <TmdbImage path={poster_path} tmdbWidth="300" />
+    <TmdbImage path={poster_path} />
     <Card.Content>
       <Card.Header>
         <Link to={`/movies/${id}`}>{title} ({release_date})</Link>
