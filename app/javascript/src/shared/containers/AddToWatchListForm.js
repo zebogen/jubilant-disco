@@ -25,6 +25,17 @@ class AddToWatchListForm extends React.Component {
         tmdbId: this.props.tmdbId,
         watchListId: this.state.selectedWatchListId,
       },
+      update: (proxy, { data: { addToWatchList } }) => {
+        proxy.writeData({
+          data: {
+            notification: {
+              show: true,
+              text: 'Added!',
+              __typename: 'Notification',
+            },
+          },
+        });
+      }
     })
   }
 

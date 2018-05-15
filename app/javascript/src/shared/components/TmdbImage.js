@@ -4,11 +4,14 @@ import { TMDB_IMAGE_BASE_URL } from 'src/shared/constants';
 import { Image } from 'semantic-ui-react';
 
 const TmdbImage = ({ path, tmdbWidth, ...restProps }) => (
-  <Image src={`${TMDB_IMAGE_BASE_URL}/w${tmdbWidth}${path}`} {...restProps} />
+  <Image
+    src={path ? `${TMDB_IMAGE_BASE_URL}/w${tmdbWidth}${path}` : 'http://via.placeholder.com/400x600'}
+    {...restProps}
+  />
 );
 
 TmdbImage.propTypes = {
-  path: PropTypes.string.isRequired,
+  path: PropTypes.string,
   tmdbWidth: PropTypes.number,
 };
 

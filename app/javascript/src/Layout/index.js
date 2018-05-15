@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Header } from 'semantic-ui-react';
+import Notification from '/shared/containers/Notification';
 
 const Layout = ({ children }) => (
   <Container>
@@ -8,6 +9,7 @@ const Layout = ({ children }) => (
       FilmBFF
     </Header>
     {children}
+    <Notification />
   </Container>
 );
 
