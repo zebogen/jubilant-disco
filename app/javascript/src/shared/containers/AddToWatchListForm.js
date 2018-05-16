@@ -5,6 +5,13 @@ import { Link } from 'react-router-dom';
 import { compose, graphql, Query, Mutation } from 'react-apollo';
 import addToWatchList from '/mutations/addToWatchList';
 import getWatchLists from '/queries/getWatchLists';
+import gql from 'graphql-tag';
+
+const notificationQuery = gql`
+  {
+    notification @client
+  }
+`
 
 class AddToWatchListForm extends React.Component {
   state = {
@@ -26,12 +33,16 @@ class AddToWatchListForm extends React.Component {
         watchListId: this.state.selectedWatchListId,
       },
       update: (proxy, { data: { addToWatchList } }) => {
-        proxy.writeData({
+        const data = proxy.readQuery({ query: notificationQuery });
+
+        proxy.writeQuery({
+          query: notificationQuery,
           data: {
             notification: {
+              ...data.notification,
               show: true,
-              text: 'Added!',
-              __typename: 'Notification',
+              slug: 'addToWatchListSuccess',
+              text: `Movie added to watch list '${addToWatchList.name}'`,
             },
           },
         });
