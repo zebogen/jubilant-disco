@@ -7,6 +7,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
+  field :watchList, Types::WatchListType do
+    argument :id, !types.ID
+
+    resolve ->(obj, args, ctx) {
+      ctx[:current_user].watch_lists.find(args[:id])
+    }
+  end
+
   field :movies, !types[Types::MovieType] do
     resolve ->(obj, args, ctx) {
       Movie.all

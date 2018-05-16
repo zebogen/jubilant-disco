@@ -1,17 +1,13 @@
 import gql from 'graphql-tag';
-import WatchListMovie from '/fragments/WatchListMovie';
+import WatchListFields from '/fragments/WatchList';
 
 const getWatchLists = gql`
   {
     watchLists {
-      id
-      name
-      movies {
-        ...WatchListMovie
-      }
+      ...WatchListFields
     }
   }
-  ${WatchListMovie}
+  ${WatchListFields}
 `
 
 export default getWatchLists;
