@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422011803) do
+ActiveRecord::Schema.define(version: 20180517013933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 20180422011803) do
     t.datetime "updated_at", null: false
     t.jsonb "tmdb_json"
     t.index ["tmdb_id"], name: "index_movies_on_tmdb_id"
+  end
+
+  create_table "user_movies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.integer "priority"
+    t.text "notes"
+    t.boolean "watched", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_user_movies_on_movie_id"
+    t.index ["user_id", "movie_id"], name: "index_user_movies_on_user_id_and_movie_id", unique: true
+    t.index ["user_id"], name: "index_user_movies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,7 +56,6 @@ ActiveRecord::Schema.define(version: 20180422011803) do
   create_table "watch_list_movies", force: :cascade do |t|
     t.bigint "watch_list_id", null: false
     t.bigint "movie_id", null: false
-    t.integer "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["movie_id"], name: "index_watch_list_movies_on_movie_id"

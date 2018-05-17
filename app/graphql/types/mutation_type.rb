@@ -21,18 +21,15 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  field :updateWatchListMovie, Types::WatchListMovieType do
-    argument :watchListMovieId, !types.ID
-    argument :priority, !types.Int
+  field :updateUserMovie, Types::UserMovieType do
+    argument :id, !types.ID
+    argument :priority, types.Int
+    argument :notes, types.String
 
     resolve ->(obj, args, ctx) {
-      watch_list_movie =
-        Query::User::WatchListMovies.new
-          .call(ctx[:current_user].id)
-          .find(args[:watchListMovieId])
-
-      watch_list_movie.update!(priority: args[:priority])
-      watch_list_movie
+      user_movie = UserMovie.find_by(args[:id])
+      user_movie.update!(args.slice(:priority, :notes))
+      user_movie
     }
   end
 

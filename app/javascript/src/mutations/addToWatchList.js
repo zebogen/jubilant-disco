@@ -7,7 +7,11 @@ export default gql`
       id
       name
       movies {
-        ...WatchListMovie
+        id
+        priority
+        movie {
+          ...WatchListMovie
+        }
       }
     }
   }

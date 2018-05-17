@@ -1,6 +1,7 @@
 class Movie < ApplicationRecord
   has_many :watch_list_movies
   has_many :watch_lists, through: :watch_list_movies
+  has_many :user_movies
 
   after_create :fetch_tmdb_json
 
