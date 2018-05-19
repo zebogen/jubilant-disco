@@ -35,11 +35,14 @@ const Content = ({
   slug,
   ...restProps
 }) => {
-  const { Component, props } = COMPONENT_SLUG_MAPPING[slug];
+  const { Component, props } = COMPONENT_SLUG_MAPPING[slug] || {};
+
   return (
     <Wrapper>
       <View>
-        <Component {...props} {...restProps} />
+        {Component
+          ? <Component {...props} {...restProps} />
+          : 'Unknown message type!'}
       </View>
     </Wrapper>
   );

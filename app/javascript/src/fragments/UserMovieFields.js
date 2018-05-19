@@ -7,6 +7,6 @@ export default gql`
     user_id
     priority
     notes
-    watched
+    watched_at
   }
 `

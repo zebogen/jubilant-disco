@@ -3,35 +3,38 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Message, Transition } from 'semantic-ui-react';
 import Content from './components/Content';
+import query from '/queries/notification';
+import withQuery from '/shared/hoc/withQuery';
 
-const query = gql`
-{
-  notification @client
-}
-`
+class Notification extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (!prevProps.data.notification.show && this.props.data.notification.show) {
+      this._dismissTimeout = setTimeout(() => this.dismiss(), 3000);
+    }
+  }
 
-const Notification = () => (
-  <Query query={query}>
-    {({ data, client }) => (
-      <Transition visible={!!data.notification.show}>
+  dismiss = () => {
+    this.props.client.writeData({
+      data: {
+        notification: {
+          ...this.props.data.notification,
+          show: false,
+        },
+      }
+    });
+  };
+
+  render() {
+    return (
+      <Transition visible={!!this.props.data.notification.show}>
         <Content
-          message={data.notification.text}
-          slug={data.notification.slug}
-          onDismiss={() => (
-            client.writeQuery({
-              query,
-              data: {
-                notification: {
-                  ...data.notification,
-                  show: false,
-                },
-              }
-            })
-          )}
+          message={this.props.data.notification.text}
+          slug={this.props.data.notification.slug}
+          onDismiss={this.dismiss}
         />
       </Transition>
-    )}
-  </Query>
-);
+    );
+  }
+}
 
-export default Notification;
+export default withQuery({ query })(Notification);

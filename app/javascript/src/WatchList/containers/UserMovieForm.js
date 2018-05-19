@@ -30,33 +30,17 @@ export class UserMovieForm extends React.Component {
     this.setState({ priority: data.value });
 
     this.props.mutate({
-      update: (proxy, { data: { updateUserMovie } }) => {
-        const data = proxy.readQuery({ query: notificationQuery });
-
-        proxy.writeQuery({
-          query: notificationQuery,
+      update: (proxy) => {
+        proxy.writeData({
           data: {
             notification: {
-              ...data.notification,
               show: true,
               slug: 'updateMovieSuccess',
               text: `Movie ${this.props.title} updated.`,
+              __typename: 'Notification',
             },
           },
         });
-
-        setTimeout(() => {
-          const data = proxy.readQuery({ query: notificationQuery });
-          proxy.writeQuery({
-            query: notificationQuery,
-            data: {
-              notification: {
-                ...data.notification,
-                show: false,
-              },
-            },
-          });
-        }, 3000);
       },
       variables: {
         id: this.props.userData.id,

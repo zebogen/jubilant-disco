@@ -27,10 +27,11 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :id, !types.ID
     argument :priority, types.Int
     argument :notes, types.String
+    argument :watched_at, types.String
 
     resolve ->(obj, args, ctx) {
       user_movie = UserMovie.find_by(id: args[:id])
-      user_movie.update!(priority: args[:priority])
+      user_movie.update!(args.to_h)
       user_movie
     }
   end

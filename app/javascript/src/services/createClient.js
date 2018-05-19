@@ -20,6 +20,7 @@ export default function createClient() {
         notification: {
           show: false,
           text: null,
+          slug: null,
           __typename: 'Notification',
         },
       },
