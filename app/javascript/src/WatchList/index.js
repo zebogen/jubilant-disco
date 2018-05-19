@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import WatchListFields from '/fragments/WatchList';
 import WatchList from './components/WatchList';
+import WatchListFields from '/fragments/WatchListFields';
 
 const query = gql`
   query GetWatchList($id: ID!) {

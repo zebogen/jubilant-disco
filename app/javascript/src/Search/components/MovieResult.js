@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card } from 'semantic-ui-react';
-import AddToWatchList from '/shared/containers/AddToWatchList';
+import AddToWatchList from '/AddToWatchList';
 import TmdbImage from '/shared/components/TmdbImage';
 
 const MovieResult = ({

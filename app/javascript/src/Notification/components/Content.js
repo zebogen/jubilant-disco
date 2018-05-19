@@ -1,10 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import AddToWatchListSuccess from './AddToWatchListSuccess';
+import Success from './Success';
 
 const COMPONENT_SLUG_MAPPING = {
-  addToWatchListSuccess: AddToWatchListSuccess,
+  addToWatchListSuccess: {
+    Component: Success,
+    props: {
+      header: 'Added!',
+    },
+  },
+  updateMovieSuccess: {
+    Component: Success,
+    props: {
+      header: 'Movie updated!',
+    },
+  },
 };
 
 const Wrapper = styled.div`
@@ -24,11 +35,11 @@ const Content = ({
   slug,
   ...restProps
 }) => {
-  const Component = COMPONENT_SLUG_MAPPING[slug];
+  const { Component, props } = COMPONENT_SLUG_MAPPING[slug];
   return (
     <Wrapper>
       <View>
-        <Component {...restProps} />
+        <Component {...props} {...restProps} />
       </View>
     </Wrapper>
   );

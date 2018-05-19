@@ -1,7 +1,8 @@
 import gql from 'graphql-tag';
+import UserMovieFields from '/fragments/UserMovieFields';
 
 export default gql`
-  fragment WatchListMovie on Movie {
+  fragment MovieFields on Movie {
     id
     tmdb_id
     title
@@ -20,6 +21,10 @@ export default gql`
     runtime
     status
     tagline
+    userData {
+      ...UserMovieFields
+    }
     vote_average
   }
+  ${UserMovieFields}
 `

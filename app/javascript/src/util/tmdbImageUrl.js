@@ -1,4 +1,4 @@
-import { TMDB_IMAGE_BASE_URL } from 'src/shared/constants';
+import { TMDB_IMAGE_BASE_URL } from '/shared/constants';
 
 export default function tmdbImageUrl(path, width = 400) {
   return path

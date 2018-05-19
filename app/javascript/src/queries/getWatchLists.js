@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import WatchListFields from '/fragments/WatchList';
+import WatchListFields from '/fragments/WatchListFields';
 
 const getWatchLists = gql`
   {

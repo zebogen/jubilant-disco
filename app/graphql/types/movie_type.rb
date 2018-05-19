@@ -52,9 +52,9 @@ Types::MovieType = GraphQL::ObjectType.define do
     resolve tmdb_json_resolver('vote_average')
   end
 
-  field :user_data, Types::UserMovieType do
+  field :userData, Types::UserMovieType do
     resolve ->(obj, args, ctx) {
-      obj.user_movies.find_by!(user_id: ctx[:current_user].id)
+      obj.user_movies.find_or_create_by(user_id: ctx[:current_user].id)
     }
   end
 end

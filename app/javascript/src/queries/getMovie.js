@@ -1,11 +1,11 @@
 import gql from 'graphql-tag';
-import WatchListMovie from '/fragments/WatchListMovie';
+import MovieFields from '/fragments/MovieFields'
 
 export default gql`
   query GetMovie($id: ID!) {
     movie(id: $id) {
-      ...WatchListMovie
+      ...MovieFields
     }
   }
-  ${WatchListMovie}
+  ${MovieFields}
 `

@@ -1,19 +1,14 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
-import WatchListMovie from '/fragments/WatchListMovie';
 
 const mutation = gql`
-  mutation UpdateWatchListMovie($watchListMovieId: ID!, $priority: Int!) {
-    updateWatchListMovie(watchListMovieId: $watchListMovieId, priority: $priority) {
+  mutation UpdateUserMovie($UserMovieId: ID!, $priority: Int!) {
+    updateUserMovie(UserMovieId: $UserMovieId, priority: $priority) {
       id
       priority
-      movie {
-        ...WatchListMovie
-      }
     }
   }
-  ${WatchListMovie}
 `
 
 class EditablePriority extends React.Component {
@@ -24,12 +19,12 @@ class EditablePriority extends React.Component {
 
   render() {
     const {
-      watchListMovieId,
+      userMovieId,
     } = this.props;
 
     return (
-      <Mutation mutation={mutation} variables={{ watchListMovieId,  }}>
-        {(updateWatchListMovie) => (
+      <Mutation mutation={mutation} variables={{ userMovieId,  }}>
+        {(updateUserMovie) => (
           <div>
             Priority
           </div>

@@ -7,12 +7,12 @@ import { Loader } from 'semantic-ui-react';
 
 const AddToWatchList = ({ tmdbId }) => (
   <Query query={getWatchLists}>
-    {({ loading, error, data: { watchLists } }) => (
+    {({ loading, error, data }) => (
       loading
         ? <Loader active />
         : error
             ? 'Something went wrong'
-            : <AddToWatchListForm watchLists={watchLists} tmdbId={tmdbId} />
+            : <AddToWatchListForm watchLists={data.watchLists} tmdbId={tmdbId} />
     )}
   </Query>
 );

@@ -6,5 +6,5 @@ Types::UserMovieType = GraphQL::ObjectType.define do
   field :user_id, !types.ID
   field :priority, types.Int
   field :notes, types.String
-  field :watched, types.Bool
+  field :watched, types.Boolean
 end

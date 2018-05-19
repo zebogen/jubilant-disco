@@ -1,21 +1,22 @@
+/* global module */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
+import StoryRouter from 'storybook-react-router';
+import MovieCard from '/shared/components/MovieCard';
+import Movie from '/Movie/components/Movie';
 
-import { Button, Welcome } from '@storybook/react/demo';
+const dummyMovie = {
+  id: 1,
+  title: 'Live and Let Die',
+  release_date: '1973-07-05',
+  overview: `James Bond must investigate a mysterious murder case of a British agent in New Orleans.\
+    Soon he finds himself up against a gangster boss named Mr. Big.`,
+  poster_path: '/p34OScaro2KdISrT4EMfeh1aS0E.jpg',
+};
 
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+storiesOf('MovieCard', module)
+  .addDecorator(StoryRouter())
+  .add('default', () => <MovieCard movie={dummyMovie} />)
 
-storiesOf('Button', module)
-  .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
-  ));
-
-// eslint-disable-next-line no-undef
-storiesOf('Button')
+storiesOf('Movie', module)
+  .add('default', () => <Movie movie={dummyMovie} />)

@@ -5,32 +5,31 @@ import Results from 'src/Search/components/Results';
 
 class Search extends React.Component {
   state = {
-    searchInput: '',
     searchString: null,
   };
 
-  handleSearchInput = e => (
-    this.setState({ searchInput: e.target.value })
-  );
+  // _searchInputRef = React.createRef();
 
   handleSubmit = () => (
-    this.setState(prevState => ({
-      searchString: prevState.searchInput,
-      searchInput: '',
-    }))
+    this.setState(
+      { searchString: this._searchInputRef.value },
+      // this._searchInputRef.clear
+    )
   );
 
   render() {
     const {
-      searchInput,
       searchString,
     } = this.state;
 
     return (
       <div className="search">
         <Form onSubmit={this.handleSubmit}>
-          <Form.Input label="Search" type="text" onChange={this.handleSearchInput} value={searchInput} />
-          <Button>Search</Button>
+          <Form.Field>
+            <label>Search</label>
+            <input type="text" ref={node => this._searchInputRef = node} />
+          </Form.Field>
+          <Button type="submit">Search</Button>
         </Form>
         <div className="search__results">
           <h3>Results</h3>

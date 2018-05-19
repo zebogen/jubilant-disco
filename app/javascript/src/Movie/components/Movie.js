@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Grid, Header } from 'semantic-ui-react';
 import TmdbImage from '/shared/components/TmdbImage';
-import AddToWatchList from '/shared/containers/AddToWatchList';
+import AddToWatchList from '/AddToWatchList';
 
 const ReleaseDate = styled.p`
   color: slategray;

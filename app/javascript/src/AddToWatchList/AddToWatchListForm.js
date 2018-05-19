@@ -5,13 +5,7 @@ import { Link } from 'react-router-dom';
 import { compose, graphql, Query, Mutation } from 'react-apollo';
 import addToWatchList from '/mutations/addToWatchList';
 import getWatchLists from '/queries/getWatchLists';
-import gql from 'graphql-tag';
-
-const notificationQuery = gql`
-  {
-    notification @client
-  }
-`
+import notificationQuery from '/queries/notification';
 
 class AddToWatchListForm extends React.Component {
   state = {

@@ -15,8 +15,10 @@ Types::MutationType = GraphQL::ObjectType.define do
 
     resolve ->(obj, args, ctx) {
       watch_list = ctx[:current_user].watch_lists.find(args[:watchListId])
-      watch_list.movies << Movie.find_or_create_by(tmdb_id: args[:tmdbId])
-      watch_list.save!
+      Operations::AddToWatchList.new.call(
+        watch_list: watch_list,
+        tmdb_id: args[:tmdbId]
+      )
       watch_list
     }
   end
@@ -27,8 +29,8 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :notes, types.String
 
     resolve ->(obj, args, ctx) {
-      user_movie = UserMovie.find_by(args[:id])
-      user_movie.update!(args.slice(:priority, :notes))
+      user_movie = UserMovie.find_by(id: args[:id])
+      user_movie.update!(priority: args[:priority])
       user_movie
     }
   end
