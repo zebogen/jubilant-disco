@@ -15,5 +15,7 @@
  */
 
  @import "semantic-ui-css/semantic.min.css";
- 
+
  @import "globals/rules";
+ @import "globals/utilities";
+ @import "globals/variables";

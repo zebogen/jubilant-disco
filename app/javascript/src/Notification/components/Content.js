@@ -10,6 +10,12 @@ const COMPONENT_SLUG_MAPPING = {
       header: 'Added!',
     },
   },
+  removeFromWatchListSuccess: {
+    Component: Success,
+    props: {
+      header: 'Removed!',
+    },
+  },
   updateMovieSuccess: {
     Component: Success,
     props: {
@@ -49,7 +55,7 @@ const Content = ({
 };
 
 Content.propTypes = {
-  slug: PropTypes.oneOf(['addToWatchListSuccess']),
+  slug: PropTypes.oneOf(Object.keys(COMPONENT_SLUG_MAPPING)),
 };
 
 export default Content;

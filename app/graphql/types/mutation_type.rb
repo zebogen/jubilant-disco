@@ -5,7 +5,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :name, !types.String
 
     resolve ->(obj, args, ctx) {
-      ctx[:current_user].watch_lists.create!(name: args[:name])
+      ctx[:current_user].watch_lists.create!(name: args.name)
     }
   end
 
@@ -14,11 +14,22 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :tmdbId, !types.ID
 
     resolve ->(obj, args, ctx) {
-      watch_list = ctx[:current_user].watch_lists.find(args[:watchListId])
+      watch_list = ctx[:current_user].watch_lists.find(args.watchListId)
       Operations::AddToWatchList.new.call(
         watch_list: watch_list,
-        tmdb_id: args[:tmdbId]
+        tmdb_id: args.tmdbId
       )
+      watch_list
+    }
+  end
+
+  field :removeFromWatchList, Types::WatchListType do
+    argument :watchListId, !types.ID
+    argument :movieId, !types.ID
+
+    resolve ->(obj, args, ctx) {
+      watch_list = ctx[:current_user].watch_lists.find(args.watchListId)
+      watch_list.watch_list_movies.find_by!(movie_id: args.movieId).destroy!
       watch_list
     }
   end
@@ -30,17 +41,9 @@ Types::MutationType = GraphQL::ObjectType.define do
     argument :watched_at, types.String
 
     resolve ->(obj, args, ctx) {
-      user_movie = UserMovie.find_by(id: args[:id])
+      user_movie = UserMovie.find_by(id: args.id)
       user_movie.update!(args.to_h)
       user_movie
     }
   end
-
-  # field :create_movie, Types::MovieType do
-  #   argument :tmdb_id, !types.Id
-
-  #   resolve ->(obj, args, ctx) {
-  #     # Movie.create!()
-  #   }
-  # end
 end

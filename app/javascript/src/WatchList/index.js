@@ -1,23 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 import WatchList from './components/WatchList';
-import WatchListFields from '/fragments/WatchListFields';
-
-const query = gql`
-  query GetWatchList($id: ID!) {
-    watchList(id: $id) {
-      ...WatchListFields
-    }
-  }
-  ${WatchListFields}
-`
+import getWatchList from '/queries/getWatchList';
 
 const WatchListContainer = ({
-  match: { params: { watchListId } },
+  match: {
+    params: { watchListId },
+  },
 }) => (
-  <Query query={query} variables={{ id: watchListId }}>
+  <Query query={getWatchList} variables={{ id: watchListId }}>
     {({ loading, error, data }) => (
       loading
         ? 'Loading'
@@ -27,5 +19,13 @@ const WatchListContainer = ({
     )}
   </Query>
 );
+
+WatchListContainer.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      watchListId: PropTypes.string.isRequired,
+    }),
+  }),
+};
 
 export default WatchListContainer;

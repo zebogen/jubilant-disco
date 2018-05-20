@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, Ref } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import notificationQuery from '/queries/notification';
+import createNotification from '/shared/helpers/createNotification';
+import RemoveButton from '../components/RemoveButton';
 
 const mutation = gql`
   mutation UpdateUserMovie($id: ID!, $priority: Int!) {
@@ -14,6 +15,17 @@ const mutation = gql`
   }
 `
 export class UserMovieForm extends React.Component {
+  static propTypes = {
+    movieId: PropTypes.string.isRequired,
+    mutate: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    userData: PropTypes.shape({
+      id: PropTypes.string,
+      priority: PropTypes.number,
+    }),
+    watchListId: PropTypes.string.isRequired,
+  }
+
   static PRIORITY_OPTIONS = [
     { key: 1, text: '1', value: 1 },
     { key: 2, text: '2', value: 2 },
@@ -30,18 +42,13 @@ export class UserMovieForm extends React.Component {
     this.setState({ priority: data.value });
 
     this.props.mutate({
-      update: (proxy) => {
-        proxy.writeData({
-          data: {
-            notification: {
-              show: true,
-              slug: 'updateMovieSuccess',
-              text: `Movie ${this.props.title} updated.`,
-              __typename: 'Notification',
-            },
-          },
-        });
-      },
+      update: cache => (
+        createNotification({
+          cache,
+          slug: 'updateMovieSuccess',
+          text: `${this.props.title} updated.`,
+        })
+      ),
       variables: {
         id: this.props.userData.id,
         priority: data.value,
@@ -50,19 +57,19 @@ export class UserMovieForm extends React.Component {
   };
 
   render() {
-    const {
-      userData: {
-        priority,
-      },
-    } = this.props;
-
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Select
           label="Priority"
           onChange={this.handlePriorityChange}
           options={UserMovieForm.PRIORITY_OPTIONS}
+          placeholder="Set a priority value"
           value={this.state.priority}
+        />
+        <RemoveButton
+          watchListId={this.props.watchListId}
+          movieId={this.props.movieId}
+          title={this.props.title}
         />
       </Form>
     );

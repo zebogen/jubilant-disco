@@ -1,3 +1,17 @@
 * {
   font-size: 16px;
 }
+
+.item.visible.transition {
+  display: flex !important;
+}
+
+.watch-list.ui.divided.items {
+  > .item:first-child {
+    padding-top: 1.5em !important;
+  }
+
+  > .item:last-child {
+    padding-bottom: 1.5em !important;
+  }
+}
