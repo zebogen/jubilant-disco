@@ -62,7 +62,12 @@ class AddToWatchListForm extends React.Component {
           <Form onSubmit={this.submitHandler(addToWatchList)}>
             {options.length > 0
               ? <React.Fragment>
-                  <Form.Select label="Add to Watch List" options={options} onChange={this.handleChange} />
+                  <Form.Select
+                    label="Add to Watch List"
+                    loading={this.props.loading}
+                    options={options}
+                    onChange={this.handleChange}
+                  />
                   <Button disabled={loading} type="submit">Add</Button>
                 </React.Fragment>
               : 'This movie is already in all your watch lists.'}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Input } from 'semantic-ui-react';
 import Results from 'src/Search/components/Results';
 
 class Search extends React.Component {
@@ -25,11 +25,13 @@ class Search extends React.Component {
     return (
       <div className="search">
         <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
+          <Form.Field width={6}>
             <label>Search</label>
-            <input type="text" ref={node => this._searchInputRef = node} />
+            <Input type="text" action>
+              <input ref={node => this._searchInputRef = node} />
+              <Button onClick={this.handleSubmit}>Search</Button>
+            </Input>
           </Form.Field>
-          <Button type="submit">Search</Button>
         </Form>
         <div className="search__results">
           <h3>Results</h3>

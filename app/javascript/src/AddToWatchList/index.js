@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
 import getWatchLists from '/queries/getWatchLists';
 import AddToWatchListForm from './AddToWatchListForm';
-import { Loader } from 'semantic-ui-react';
+import withQuery from '/shared/hoc/withQuery';
 
-const AddToWatchList = ({ tmdbId }) => (
-  <Query query={getWatchLists}>
-    {({ loading, error, data }) => (
-      loading
-        ? <Loader active />
-        : error
-            ? 'Something went wrong'
-            : <AddToWatchListForm watchLists={data.watchLists} tmdbId={tmdbId} />
-    )}
-  </Query>
+const AddToWatchList = ({ loading, error, data, tmdbId }) => (
+  error
+    ? 'Something went wrong'
+    : <AddToWatchListForm loading={loading} watchLists={data.watchLists} tmdbId={tmdbId} />
 );
 
-export default AddToWatchList;
+export default withQuery({ query: getWatchLists })(AddToWatchList);

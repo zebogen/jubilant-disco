@@ -9,6 +9,7 @@
     "babel-root-slash-import": "^1.1.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.1",
+    "lodash": "^4.17.10",
     "prop-types": "^15.6.0",
     "react": "^16.3.2",
     "react-apollo": "^2.1.3",
