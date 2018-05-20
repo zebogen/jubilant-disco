@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :watch_lists, inverse_of: :user
+  has_many :user_movies, inverse_of: :user
 end

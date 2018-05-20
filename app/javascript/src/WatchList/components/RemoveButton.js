@@ -11,9 +11,11 @@ const RemoveButton = ({
   mutate,
   title,
   watchListId,
+  ...restProps
 }) => (
   <Button
-    color="red"
+    {...restProps}
+    icon="trash"
     onClick={() =>
       mutate({
         refetchQueries: [{ query: getWatchList, variables: { id: watchListId } }],
@@ -30,9 +32,7 @@ const RemoveButton = ({
         },
       })
     }
-  >
-    Remove From Watch List
-  </Button>
+  />
 );
 
 RemoveButton.propTypes = {

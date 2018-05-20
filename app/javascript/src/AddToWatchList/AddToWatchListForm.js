@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import { compose, graphql, Query, Mutation } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import addToWatchList from '/mutations/addToWatchList';
-import getWatchLists from '/queries/getWatchLists';
-import notificationQuery from '/queries/notification';
+import createNotification from '/shared/helpers/createNotification';
 
 class AddToWatchListForm extends React.Component {
+  static propTypes = {
+    watchLists: PropTypes.array,
+    tmdbId: PropTypes.string.isRequired,
+  };
+
   state = {
     selectedWatchListId: null,
     success: undefined,
@@ -20,27 +23,18 @@ class AddToWatchListForm extends React.Component {
 
   submitHandler = mutate => (event) => {
     event.preventDefault();
-    const { selectedWatchListId } = this.state;
     mutate({
       variables: {
         tmdbId: this.props.tmdbId,
         watchListId: this.state.selectedWatchListId,
       },
-      update: (proxy, { data: { addToWatchList } }) => {
-        const data = proxy.readQuery({ query: notificationQuery });
-
-        proxy.writeQuery({
-          query: notificationQuery,
-          data: {
-            notification: {
-              ...data.notification,
-              show: true,
-              slug: 'addToWatchListSuccess',
-              text: `Movie added to watch list '${addToWatchList.name}'`,
-            },
-          },
-        });
-      }
+      update: (cache, { data: { addToWatchList } }) => (
+        createNotification({
+          cache,
+          slug: 'addToWatchListSuccess',
+          text: `Movie added to watch list '${addToWatchList.name}'`,
+        })
+      ),
     })
   }
 

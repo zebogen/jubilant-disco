@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form } from 'semantic-ui-react';
+import { Form, Dropdown } from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import createNotification from '/shared/helpers/createNotification';
-import RemoveButton from '../components/RemoveButton';
+import getWatchList from '/queries/getWatchList';
 
 const mutation = gql`
   mutation UpdateUserMovie($id: ID!, $priority: Int!) {
@@ -42,6 +42,7 @@ export class UserMovieForm extends React.Component {
     this.setState({ priority: data.value });
 
     this.props.mutate({
+      refetchQueries: [{ query: getWatchList, variables: { id: this.props.watchListId } }],
       update: cache => (
         createNotification({
           cache,
@@ -59,18 +60,15 @@ export class UserMovieForm extends React.Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Form.Select
-          label="Priority"
-          onChange={this.handlePriorityChange}
-          options={UserMovieForm.PRIORITY_OPTIONS}
-          placeholder="Set a priority value"
-          value={this.state.priority}
-        />
-        <RemoveButton
-          watchListId={this.props.watchListId}
-          movieId={this.props.movieId}
-          title={this.props.title}
-        />
+        <Form.Field>
+          <label>Priority</label>
+          <Dropdown
+            onChange={this.handlePriorityChange}
+            options={UserMovieForm.PRIORITY_OPTIONS}
+            placeholder="Set a priority value"
+            value={this.state.priority}
+          />
+        </Form.Field>
       </Form>
     );
   }

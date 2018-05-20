@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Header, Item, List, Grid, Transition } from 'semantic-ui-react';
 import tmdbImageUrl from '/util/tmdbImageUrl';
 import UserMovieForm from '../containers/UserMovieForm';
+import RemoveButton from './RemoveButton';
 
 const WatchList = ({
   id,
@@ -11,7 +12,13 @@ const WatchList = ({
 }) => (
   <div>
     <Header size="large">{name}</Header>
-      <Transition.Group className="ui divided relaxed items watch-list">
+      <Transition.Group
+        animation="fade"
+        as={Item.Group}
+        className="watch-list"
+        relaxed
+        divided
+      >
         {movies.map(({
           id: movieId,
           poster_path,
@@ -35,6 +42,12 @@ const WatchList = ({
             <Item.Image src={tmdbImageUrl(poster_path)} />
             <Item.Content>
               <Item.Header>{title}</Item.Header>
+              <RemoveButton
+                style={{ marginLeft: '1em' }}
+                watchListId={id}
+                movieId={movieId}
+                title={title}
+              />
               <Item.Meta>Released {release_date}</Item.Meta>
               <Item.Description>
                 <p>{overview}</p>
