@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo';
 import createWatchList from 'src/mutations/createWatchList';
 import getWatchLists from 'src/queries/getWatchLists';
 import { Form, Button } from 'semantic-ui-react';
+import createNotification from '/shared/helpers/createNotification';
 
 class WatchListForm extends React.Component {
   static propTypes = {
@@ -19,6 +20,13 @@ class WatchListForm extends React.Component {
     this.props.mutate({
       refetchQueries: [{ query: getWatchLists }],
       variables: { name: this.state.name },
+      update: cache => (
+        createNotification({
+          cache,
+          slug: 'success',
+          text: 'Watch list created!'
+        })
+      ),
     });
 
     this.setState({ name: '' });

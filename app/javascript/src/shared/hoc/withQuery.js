@@ -15,7 +15,7 @@ export default function withQuery({ variables = {}, ...options }) {
       >
         {queryProps => (
           queryProps.loading
-            ? <Loader active />
+            ? <Loader active size={options.loaderSize} />
             : <WrappedComponent {...props} {...queryProps} />
         )}
       </Query>

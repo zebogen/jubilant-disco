@@ -22,6 +22,12 @@ const COMPONENT_SLUG_MAPPING = {
       header: 'Movie updated!',
     },
   },
+  success: {
+    Component: Success,
+    props: {
+      header: 'Success!',
+    },
+  },
 };
 
 const Wrapper = styled.div`
