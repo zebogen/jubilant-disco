@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Item } from 'semantic-ui-react';
-import truncate from 'lodash/truncate';
 import AddToWatchList from '/AddToWatchList';
 import tmdbImageUrl from '/util/tmdbImageUrl';
 

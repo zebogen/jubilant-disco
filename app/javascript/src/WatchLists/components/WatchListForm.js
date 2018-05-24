@@ -43,6 +43,7 @@ class WatchListForm extends React.Component {
           onChange={this.handleNameChange}
           placeholder="Enter a name"
           value={this.state.name}
+          width={6}
         />
         <Button type="submit">Create Watch List</Button>
       </Form>

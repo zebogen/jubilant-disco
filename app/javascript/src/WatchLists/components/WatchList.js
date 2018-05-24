@@ -14,4 +14,9 @@ const WatchList = ({
   </div>
 );
 
+WatchList.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+}
+
 export default WatchList;

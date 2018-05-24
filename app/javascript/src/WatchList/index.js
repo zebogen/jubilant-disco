@@ -1,23 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
+import withQuery from '/shared/hoc/withQuery';
 import WatchList from './components/WatchList';
 import getWatchList from '/queries/getWatchList';
 
 const WatchListContainer = ({
-  match: {
-    params: { watchListId },
-  },
+  error,
+  data,
 }) => (
-  <Query query={getWatchList} variables={{ id: watchListId }}>
-    {({ loading, error, data }) => (
-      loading
-        ? 'Loading'
-        : error
-          ? 'Error'
-          : <WatchList {...data.watchList} />
-    )}
-  </Query>
+  error
+    ? 'Error'
+    : <WatchList {...data.watchList} />
 );
 
 WatchListContainer.propTypes = {
@@ -28,4 +22,11 @@ WatchListContainer.propTypes = {
   }),
 };
 
-export default WatchListContainer;
+export default withQuery({
+  query: getWatchList,
+  variables: ({
+    match: {
+      params: { watchListId },
+    },
+  }) => ({ id: watchListId })
+})(WatchListContainer);

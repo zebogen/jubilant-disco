@@ -10,4 +10,4 @@ const AddToWatchList = ({ loading, error, data, ...restProps }) => (
     : <AddToWatchListForm queryLoading={loading} watchLists={data.watchLists} {...restProps} />
 );
 
-export default withQuery({ query: getWatchLists })(AddToWatchList);
+export default withQuery({ query: getWatchLists, showLoader: false })(AddToWatchList);

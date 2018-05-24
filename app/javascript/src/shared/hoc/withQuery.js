@@ -2,7 +2,12 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { Loader } from 'semantic-ui-react';
 
-export default function withQuery({ variables = {}, ...options }) {
+export default function withQuery({
+  variables = {},
+  showLoader = true,
+  loaderSize,
+  ...options
+}) {
   return (WrappedComponent) => {
     const component = props => (
       <Query
@@ -14,8 +19,8 @@ export default function withQuery({ variables = {}, ...options }) {
         }
       >
         {queryProps => (
-          queryProps.loading
-            ? <Loader active size={options.loaderSize} />
+          showLoader && queryProps.loading
+            ? <Loader active size={loaderSize} />
             : <WrappedComponent {...props} {...queryProps} />
         )}
       </Query>
