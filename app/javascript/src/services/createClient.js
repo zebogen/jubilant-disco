@@ -23,6 +23,11 @@ export default function createClient() {
           slug: null,
           __typename: 'Notification',
         },
+        searchParams: {
+          query: null,
+          page: 1,
+          __typename: 'SearchParams',
+        },
       },
     },
     headers: {

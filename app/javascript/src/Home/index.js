@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
+import { Loader } from 'semantic-ui-react';
 
 class Home extends React.Component {
   render() {
     return (
       <div>
-        Foo
+        <Loader active size="large" />
       </div>
     );
   }

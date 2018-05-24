@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  query SearchTmdbMovies($query: String!) {
-    tmdbMovies(query: $query) {
+  query SearchTmdbMovies($query: String!, $page: Int) {
+    tmdbMovies(query: $query, page: $page) {
       page
       total_pages
       total_results
