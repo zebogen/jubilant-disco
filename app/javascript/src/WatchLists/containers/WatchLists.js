@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Item } from 'semantic-ui-react';
 import withQuery from '/shared/hoc/withQuery';
-import getWatchLists from 'src/queries/getWatchLists';
 import WatchList from '../components/WatchList';
 
 const WatchLists = ({

@@ -13,13 +13,8 @@ class Search extends React.Component {
     searchString: null,
   };
 
-  // _searchInputRef = React.createRef();
-
   handleSubmit = () => (
-    this.setState(
-      { searchString: this._searchInputRef.value },
-      // this._searchInputRef.clear
-    )
+    this.setState({ searchString: this._searchInputRef.value })
   );
 
   render() {

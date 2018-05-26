@@ -24,6 +24,15 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
+  field :deleteWatchList, types.String do
+    argument :watchListId, !types.ID
+
+    resolve ->(obj, args, ctx) {
+      watch_list = ctx[:current_user].watch_lists.find(args.watchListId)
+      watch_list.destroy!
+    }
+  end
+
   field :removeFromWatchList, Types::WatchListType do
     argument :watchListId, !types.ID
     argument :movieId, !types.ID

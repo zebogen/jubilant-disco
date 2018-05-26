@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Header, Item } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import TmdbImage from '/shared/components/TmdbImage';
 import styled from 'styled-components';
+import TmdbImage from '/shared/components/TmdbImage';
+import RemoveButton from './RemoveButton';
 
 const ImagesWrapper = styled.div`
   align-items: center;
@@ -49,9 +50,10 @@ const WatchList = ({
         ))}
       </ImagesWrapper>
       <DetailsWrapper>
-        <Header>
+        <Item.Header>
           <Link to={`/watchLists/${id}`}>{name}</Link>
-        </Header>
+          <RemoveButton watchListId={id} name={name} style={{ marginLeft: '10px' }} />
+        </Item.Header>
         <p>{notes}</p>
       </DetailsWrapper>
     </Item.Content>

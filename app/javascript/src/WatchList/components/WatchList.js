@@ -6,11 +6,15 @@ import WatchListItem from './WatchListItem';
 const WatchList = ({
   id,
   name,
+  notes,
   movies,
 }) => (
   <div>
     <Header size="large">
       {name}
+    </Header>
+    <Header>
+      {notes}
     </Header>
     <Item.Group
       as={Item.Group}

@@ -5,6 +5,7 @@ export default gql`
   fragment WatchListFields on WatchList {
     id
     name
+    notes
     movies {
       ...MovieFields
     }
