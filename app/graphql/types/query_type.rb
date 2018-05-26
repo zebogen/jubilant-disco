@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Types::QueryType = GraphQL::ObjectType.define do
-  name 'Query'
+  name "Query"
 
   field :watchLists, !types[Types::WatchListType] do
-    resolve ->(obj, args, ctx) {
+    resolve ->(_obj, _args, ctx) {
       ctx[:current_user].watch_lists
     }
   end
@@ -10,13 +12,13 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :watchList, Types::WatchListType do
     argument :id, !types.ID
 
-    resolve ->(obj, args, ctx) {
+    resolve ->(_obj, args, ctx) {
       ctx[:current_user].watch_lists.find(args[:id])
     }
   end
 
   field :movies, !types[Types::MovieType] do
-    resolve ->(obj, args, ctx) {
+    resolve ->(_obj, _args, _ctx) {
       Movie.all
     }
   end
@@ -24,7 +26,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :movie, Types::MovieType do
     argument :id, !types.ID
 
-    resolve ->(obj, args, ctx) {
+    resolve ->(_obj, args, _ctx) {
       Movie.find_by(tmdb_id: args[:id])
     }
   end
@@ -33,7 +35,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :query, !types.String
     argument :page, types.Int, default_value: 1
 
-    resolve ->(obj, args, ctx) {
+    resolve ->(_obj, args, _ctx) {
       StructCreator.call(TmdbClient.new.search(query: args[:query], page: args[:page]))
     }
   end

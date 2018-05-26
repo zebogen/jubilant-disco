@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StructCreator
   def self.call(hash)
     new.call(hash)

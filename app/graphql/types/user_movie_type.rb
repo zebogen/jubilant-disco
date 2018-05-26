@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Types::UserMovieType = GraphQL::ObjectType.define do
-  name 'UserMovie'
+  name "UserMovie"
 
   field :id, !types.ID
   field :movie_id, !types.ID

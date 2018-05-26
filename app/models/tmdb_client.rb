@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class TmdbClient
   class SearchError < StandardError; end
 
-  API_BASE_URL = 'https://api.themoviedb.org/3'.freeze
-  MOVIE_ENDPOINT = '/movie'.freeze
-  MOVIE_SEARCH_ENDPOINT = '/search/movie'.freeze
+  API_BASE_URL = "https://api.themoviedb.org/3"
+  MOVIE_ENDPOINT = "/movie"
+  MOVIE_SEARCH_ENDPOINT = "/search/movie"
   MAX_RETRY_COUNT = 5
 
   def find_by_id(tmdb_id)
@@ -38,9 +40,7 @@ class TmdbClient
   end
 
   def get(url)
-    if @retry_count == MAX_RETRY_COUNT
-      raise SearchError, "Maximum number of retries (#{MAX_RETRY_COUNT}) exceeded."
-    end
+    raise SearchError, "Maximum number of retries (#{MAX_RETRY_COUNT}) exceeded." if @retry_count == MAX_RETRY_COUNT
 
     @last_url = url
     HTTParty.get(url)
@@ -53,7 +53,7 @@ class TmdbClient
 
   def handle_error(response)
     if response.code == 429
-      retry_after = response.headers['retry_after']
+      retry_after = response.headers["retry_after"]
       sleep retry_after.to_i
       retry_last
     elsif response.code == 404

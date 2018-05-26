@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Types::TmdbMovieType = GraphQL::ObjectType.define do
-  name 'TmdbMovie'
+  name "TmdbMovie"
 
   field :id, !types.ID
   field :title, !types.String

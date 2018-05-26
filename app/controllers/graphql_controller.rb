@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GraphqlController < ApplicationController
   def execute
     variables = ensure_hash(params[:variables])
@@ -13,7 +15,7 @@ class GraphqlController < ApplicationController
   private
 
   # Handle form data, JSON body, or a blank value
-  def ensure_hash(ambiguous_param)
+  def ensure_hash(ambiguous_param) # rubocop:disable Metrics/MethodLength
     case ambiguous_param
     when String
       if ambiguous_param.present?

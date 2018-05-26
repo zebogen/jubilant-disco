@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 Types::GenreType = GraphQL::ObjectType.define do
-  name 'Genre'
+  name "Genre"
 
   field :id, !types.ID do
-    resolve ->(obj, args, ctx) {
-      obj['id']
+    resolve ->(obj, _args, _ctx) {
+      obj["id"]
     }
   end
   field :name, !types.String do
-    resolve ->(obj, args, ctx) {
-      obj['name']
+    resolve ->(obj, _args, _ctx) {
+      obj["name"]
     }
   end
 end

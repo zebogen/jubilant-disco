@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Types::TmdbSearchType = GraphQL::ObjectType.define do
-  name 'TmdbSearch'
+  name "TmdbSearch"
 
   field :page, !types.Int
   field :total_pages, !types.Int
