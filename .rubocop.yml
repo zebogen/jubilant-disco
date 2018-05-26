@@ -1,0 +1,20 @@
+AllCops:
+  TargetRubyVersion: 2.4
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Max: 50
+
+Style/Documentation:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

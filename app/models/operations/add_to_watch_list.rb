@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Operations
   class AddToWatchList
     def call(watch_list:, tmdb_id:)

@@ -21,6 +21,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'rspec-rails', '~> 3.6'
   gem 'selenium-webdriver'
+  gem 'factory_bot'
 end
 
 group :development do
@@ -29,6 +30,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop', '~> 0.56.0', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

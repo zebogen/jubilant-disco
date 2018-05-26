@@ -1,5 +1,9 @@
 class StructCreator
   def self.call(hash)
+    new.call(hash)
+  end
+
+  def call(hash)
     OpenStruct.new(
       hash.each_with_object({}) do |(key, value), obj|
         obj[key] = parse_value(value)
@@ -7,7 +11,9 @@ class StructCreator
     )
   end
 
-  def self.parse_value(value)
+  private
+
+  def parse_value(value)
     if value.is_a?(Hash)
       call(value)
     elsif value.is_a?(Array)
