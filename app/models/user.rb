@@ -6,6 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :watch_lists, inverse_of: :user
-  has_many :user_movies, inverse_of: :user
+  has_many :watch_lists, inverse_of: :user, dependent: :destroy
+  has_many :user_movies, inverse_of: :user, dependent: :destroy
 end
