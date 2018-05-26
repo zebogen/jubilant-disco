@@ -53,8 +53,6 @@ class Results extends React.Component {
   render() {
     const { page } = this.props.data.searchParams;
 
-    console.log(this.props);
-
     return (
       <ResultsWrapper>
         <Query query={searchMovies} variables={{ query: this.props.query, page }}>

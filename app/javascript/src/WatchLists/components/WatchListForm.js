@@ -13,13 +13,14 @@ class WatchListForm extends React.Component {
 
   state = {
     name: '',
+    notes: '',
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.mutate({
       refetchQueries: [{ query: getWatchLists }],
-      variables: { name: this.state.name },
+      variables: { name: this.state.name, notes: this.state.notes },
       update: cache => (
         createNotification({
           cache,
@@ -29,11 +30,14 @@ class WatchListForm extends React.Component {
       ),
     });
 
-    this.setState({ name: '' });
+    this.setState({ name: '', notes: '' });
   }
 
-  handleNameChange = event =>
-    this.setState({ name: event.target.value });
+  inputChangeHandler = field => event =>
+    this.setState({ [field]: event.target.value });
+
+  handleNameChange = this.inputChangeHandler('name');
+  handleNotesChange = this.inputChangeHandler('notes');
 
   render() {
     return (
@@ -45,7 +49,16 @@ class WatchListForm extends React.Component {
           value={this.state.name}
           width={6}
         />
-        <Button type="submit">Create Watch List</Button>
+        <Form.TextArea
+          label="Notes"
+          value={this.state.notes}
+          placeholder="Enter notes"
+          onChange={this.handleNotesChange}
+          width={6}
+        />
+        <Button type="submit">
+          Create Watch List
+        </Button>
       </Form>
     )
   }

@@ -3,9 +3,10 @@ Types::MutationType = GraphQL::ObjectType.define do
 
   field :createWatchList, Types::WatchListType do
     argument :name, !types.String
+    argument :notes, types.String
 
     resolve ->(obj, args, ctx) {
-      ctx[:current_user].watch_lists.create!(name: args.name)
+      ctx[:current_user].watch_lists.create!(name: args.name, notes: args.notes)
     }
   end
 

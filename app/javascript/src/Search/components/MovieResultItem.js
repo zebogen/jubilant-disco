@@ -18,7 +18,7 @@ const MovieResultItem = ({
     <Item.Image src={tmdbImageUrl(poster_path)} />
     <Item.Content>
       <Item.Header>
-        <Link to={`/movies/${id}`}>{title} ({release_date})</Link>
+        <Link to={`/movies/${id}`}>{title} ({release_date.substring(0, 4)})</Link>
       </Item.Header>
       <Item.Description>{overview}</Item.Description>
       <Item.Extra><AddToWatchList tmdbId={id} /></Item.Extra>

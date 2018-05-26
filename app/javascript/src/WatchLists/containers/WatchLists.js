@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
+import { Item } from 'semantic-ui-react';
 import withQuery from '/shared/hoc/withQuery';
 import getWatchLists from 'src/queries/getWatchLists';
 import WatchList from '../components/WatchList';
@@ -8,11 +10,24 @@ const WatchLists = ({
   error,
   data,
 }) => (
-  <div>
+  <Item.Group divided relaxed>
     {data.watchLists.map(watchList => (
       <WatchList key={watchList.id} {...watchList} />
     ))}
-  </div>
+  </Item.Group>
 );
 
-export default withQuery({ query: getWatchLists })(WatchLists);
+export default withQuery({
+  query: gql`
+    {
+      watchLists {
+        id
+        name
+        notes
+        movies {
+          poster_path
+        }
+      }
+    }
+  `
+})(WatchLists);
