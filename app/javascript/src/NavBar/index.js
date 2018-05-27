@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
+import styled from 'styled-components';
+
+const NavLink = styled.span`
+  a {
+    color: rgba(0, 0, 0, 0.87);
+  }
+`
 
 const NavBar = ({ loggedIn, match }) => (
   <Menu pointing secondary>
@@ -9,27 +16,35 @@ const NavBar = ({ loggedIn, match }) => (
       name="home"
       active={match.url === '/'}
     >
-      <Link to="/">Home</Link>
+      <NavLink>
+        <Link to="/">Home</Link>
+      </NavLink>
     </Menu.Item>
     <Menu.Item
       name="watchlists"
       active={match.url === '/watchLists'}
     >
-      <Link to="/watchLists">Watch Lists</Link>
+      <NavLink>
+        <Link to="/watchLists">Watch Lists</Link>
+      </NavLink>
     </Menu.Item>
     <Menu.Item
       name="search"
       active={match.url === '/search'}
     >
-      <Link to="/search">Search</Link>
+      <NavLink>
+        <Link to="/search">Search</Link>
+      </NavLink>
     </Menu.Item>
     {!loggedIn && (
       <Menu.Menu>
         <Menu.Item name="signin" active={false} link>
-          <a href="/users/sign_in">Sign In</a>
+          <NavLink>
+            <Link to="/users/sign_in">Sign In</Link>
+          </NavLink>
         </Menu.Item>
         <Menu.Item name="signup" active={false} link>
-          <a href="/users/sign_up">Sign Up</a>
+          <Link to="/users/sign_up">Sign Up</Link>
         </Menu.Item>
       </Menu.Menu>
     )}

@@ -1,7 +1,10 @@
 /*******************************
      User Global Variables
 *******************************/
-
-@headerFont: 'Tajawal', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-
 @googleFontImportString: '@{googleFontImportStringBase}|Tajawal:400,700';
+
+@emSize: 16px;
+@fontSize: 16px;
+
+
+@pageBackground: hsl(0, 0, 98%);

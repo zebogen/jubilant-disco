@@ -1,16 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import map from 'lodash/map';
-import { Container, Header, Message } from 'semantic-ui-react';
+import { Container, Header } from 'semantic-ui-react';
 import Notification from '/Notification';
 import Flash from '/Flash';
+import styled from 'styled-components';
+
+const Logo = styled.header`
+  font-size: 2em;
+  margin-top: 1em;
+`
 
 const Layout = ({ children, flash }) => (
   <Container>
     <Flash flash={flash} />
-    <Header size="huge">
-      FilmBFF
-    </Header>
+    <Logo>
+      <Header>
+        FilmBFF
+      </Header>
+    </Logo>
     {children}
     <Notification />
   </Container>
