@@ -5017,21 +5017,21 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .ui.container {
-    width: 927px;
+    width: 911px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
   .ui.grid.container {
-    width: calc( 927px  +  2rem ) !important;
+    width: calc( 911px  +  2rem ) !important;
   }
 
   .ui.relaxed.grid.container {
-    width: calc( 927px  +  3rem ) !important;
+    width: calc( 911px  +  3rem ) !important;
   }
 
   .ui.very.relaxed.grid.container {
-    width: calc( 927px  +  5rem ) !important;
+    width: calc( 911px  +  5rem ) !important;
   }
 }
 
@@ -5039,21 +5039,21 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 @media only screen and (min-width: 1200px) {
   .ui.container {
-    width: 1119px;
+    width: 1087px;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
   .ui.grid.container {
-    width: calc( 1119px  +  2rem ) !important;
+    width: calc( 1087px  +  2rem ) !important;
   }
 
   .ui.relaxed.grid.container {
-    width: calc( 1119px  +  3rem ) !important;
+    width: calc( 1087px  +  3rem ) !important;
   }
 
   .ui.very.relaxed.grid.container {
-    width: calc( 1119px  +  5rem ) !important;
+    width: calc( 1087px  +  5rem ) !important;
   }
 }
 
