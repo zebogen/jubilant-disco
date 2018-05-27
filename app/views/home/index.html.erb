@@ -2,4 +2,4 @@
   <%= javascript_pack_tag 'home/index' %>
 <% end %>
 
-<%= react_component('Root', props: { currentUser: current_user }) %>
+<%= react_component('Root', props: { currentUser: current_user, flash: flash.to_h }) %>

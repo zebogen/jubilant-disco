@@ -1,6 +1,6 @@
 import React from 'react';
 import WatchListForm from 'src/WatchLists/components/WatchListForm';
-import WatchLists from './containers/WatchLists';
+import WatchLists from './components/WatchLists';
 
 const WatchListsView = () => (
   <div>

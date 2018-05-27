@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Item, List, Grid } from 'semantic-ui-react';
 import tmdbImageUrl from '/util/tmdbImageUrl';
 import RemoveButton from './RemoveButton';
-import UserMovieForm from '../containers/UserMovieForm';
+import UserMovieForm from './UserMovieForm';
 
 const WatchListItem = ({
   id,

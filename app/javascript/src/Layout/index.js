@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Header } from 'semantic-ui-react';
+import map from 'lodash/map';
+import { Container, Header, Message } from 'semantic-ui-react';
 import Notification from '/Notification';
+import Flash from '/Flash';
 
-const Layout = ({ children }) => (
+const Layout = ({ children, flash }) => (
   <Container>
+    <Flash flash={flash} />
     <Header size="huge">
       FilmBFF
     </Header>
@@ -15,6 +18,7 @@ const Layout = ({ children }) => (
 
 Layout.propTypes = {
   children: PropTypes.array,
+  flash: PropTypes.object,
 };
 
 export default Layout;

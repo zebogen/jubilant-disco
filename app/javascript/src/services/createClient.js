@@ -4,6 +4,7 @@ import ApolloClient from 'apollo-boost';
 // import { InMemoryCache } from 'apollo-cache-inmemory';
 // import { withClientState } from 'apollo-link-state';
 import gql from 'graphql-tag';
+import csrfToken from '/shared/helpers/csrfToken';
 
 
 export default function createClient() {
@@ -31,7 +32,7 @@ export default function createClient() {
       },
     },
     headers: {
-      'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      'X-CSRF-Token': csrfToken(),
     },
   });
 }

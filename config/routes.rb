@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   post "/graphql", to: "graphql#execute"
 
-  devise_for :users
+  # get "/users/sign_in", to: "home#index"
+  # get "/users/sign_up", to: "home#index"
+
+  devise_for :users, controllers: { sessions: "sessions", registrations: "registrations" }
   root to: "home#index"
 
   get "/*path", to: "home#index"
