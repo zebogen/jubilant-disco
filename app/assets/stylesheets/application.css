@@ -15,7 +15,7 @@
  */
  /* @import url('https://fonts.googleapis.com/css?family=Noto+Sans|Open+Sans:300,400|Roboto:300,400|Source+Sans+Pro:300,400'); */
 
- @import "semantic-ui-css/semantic.min.css";
+ @import "semantic/semantic.min.css";
 
  @import "globals/rules";
  @import "globals/utilities";

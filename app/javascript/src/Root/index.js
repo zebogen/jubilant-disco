@@ -34,6 +34,7 @@ const Root = ({ currentUser, flash }) => (
 
 Root.propTypes = {
   currentUser: PropTypes.object,
+  flash: PropTypes.object,
 };
 
 export default Root;

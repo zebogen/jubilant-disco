@@ -28,3 +28,7 @@ config/secrets.yml.key
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+/semantic/*
+!/semantic/src/*
+/semantic/src/definitions
+/semantic/src/themes
