@@ -1,42 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 import styled from 'styled-components';
 
-const Logo = styled.span`
-  font-size: 2em;
+const Bar = styled.div`
+  background-color: hsl(0, 0%, 95%);
+  display: flex;
+  height: 2em;
+  width: 100%;
 `
 
 const NavLink = styled.span`
   a {
-    color: hsl(0, 0%, 80%);
+    color: rgba(0, 0, 0, 0.87);
   }
 `
 
-const Bar = styled.div`
-  background: hsl(0, 0%, 20%) !important;
+const LoginButtons = styled.div`
+  align-self: flex-end;
 `
 
-const NavBar = ({ loggedIn, match }) => (
-  <Menu inverted>
-    <Menu.Item>
-      <Link to="/">
-        <Logo>FilmBFF</Logo>
-      </Link>
-    </Menu.Item>
-    <Menu.Item
-      name="watchlists"
-      active={match.url === '/watchLists'}
-    >
+const SolidNavBar = ({ loggedIn, match }) => (
+  <Bar>
+    <NavLink>
+      <Link to="/">FilmBFF</Link>
+    </NavLink>
+    <NavLink>
       <Link to="/watchLists">Watch Lists</Link>
-    </Menu.Item>
-    <Menu.Item
-      name="search"
-      active={match.url === '/search'}
-    >
+    </NavLink>
+    <NavLink>
       <Link to="/search">Search</Link>
-    </Menu.Item>
+    </NavLink>
     {!loggedIn && (
       <Menu.Menu>
         <Menu.Item name="signin" active={false} link>
@@ -49,11 +44,11 @@ const NavBar = ({ loggedIn, match }) => (
         </Menu.Item>
       </Menu.Menu>
     )}
-  </Menu>
+  </Bar>
 );
 
-NavBar.propTypes = {
+SolidNavBar.propTypes = {
   loggedIn: PropTypes.bool,
 };
 
-export default NavBar;
+export default SolidNavBar;

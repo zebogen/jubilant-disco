@@ -2,34 +2,26 @@
 
 class TmdbClient
   class SearchError < StandardError; end
+  class RetriesExceededError < StandardError; end
 
   API_BASE_URL = "https://api.themoviedb.org/3"
   MOVIE_ENDPOINT = "/movie"
   MOVIE_SEARCH_ENDPOINT = "/search/movie"
   MAX_RETRY_COUNT = 5
 
-  def find_by_id(tmdb_id)
-    response = get(api_url("#{MOVIE_ENDPOINT}/#{tmdb_id}"))
+  def initialize
+    @retry_count = 0
+  end
 
-    if response.ok?
-      parse_response(response)
-    else
-      handle_error(response)
-    end
+  def find_by_id(tmdb_id)
+    get(api_url("#{MOVIE_ENDPOINT}/#{tmdb_id}"))
   end
 
   def search(query)
-    response = get(api_url(MOVIE_SEARCH_ENDPOINT, query))
-    parsed_response = parse_response(response)
-
-    if response.ok?
-      parsed_response[:results].each do |movie|
+    get(api_url(MOVIE_SEARCH_ENDPOINT, query)) do |response|
+      response[:results].each do |movie|
         Movie.find_or_create_by!(tmdb_id: movie[:id])
       end
-
-      parsed_response
-    else
-      handle_error(response)
     end
   end
 
@@ -40,10 +32,20 @@ class TmdbClient
   end
 
   def get(url)
-    raise SearchError, "Maximum number of retries (#{MAX_RETRY_COUNT}) exceeded." if @retry_count == MAX_RETRY_COUNT
+    if @retry_count == MAX_RETRY_COUNT
+      raise RetriesExceededError, "Maximum number of retries (#{MAX_RETRY_COUNT}) exceeded."
+    end
 
     @last_url = url
-    HTTParty.get(url)
+    response = HTTParty.get(url)
+
+    return handle_error(response) unless response.ok?
+
+    parsed_response = parse_response(response)
+
+    yield parsed_response if block_given?
+
+    parsed_response
   end
 
   def retry_last
@@ -56,8 +58,6 @@ class TmdbClient
       retry_after = response.headers["retry_after"]
       sleep retry_after.to_i
       retry_last
-    elsif response.code == 404
-      {}
     else
       raise SearchError, "Status code #{response.body[:status_code]}: #{response.parsed_response[:status_message]}"
     end
