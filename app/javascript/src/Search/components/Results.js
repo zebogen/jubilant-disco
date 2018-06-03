@@ -4,15 +4,15 @@ import { Query, Mutation } from 'react-apollo';
 import withQuery from '/shared/hoc/withQuery';
 import gql from 'graphql-tag';
 import { Item, Loader, Pagination } from 'semantic-ui-react';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 import searchMovies from 'src/queries/searchMovies';
 import MovieResultItem from 'src/Search/components/MovieResultItem';
 
-const ResultsWrapper = styled.div`
+const ResultsWrapper = styled('div')`
   margin-top: 2em;
 `
 
-const PaginationWrapper = styled.div`
+const PaginationWrapper = styled('div')`
   margin: 2em 0;
 `
 

@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Header } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 import Notification from '/Notification';
 import Flash from '/Flash';
 import NavBar from '/NavBar';
 
-const Logo = styled.header`
+const Logo = styled('header')`
   font-size: 2em;
   margin-top: 1em;
 `
 
-const Content = styled.div`
+const Content = styled('div')`
 
 `
 

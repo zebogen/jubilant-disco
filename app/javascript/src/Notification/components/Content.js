@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 import Success from './Success';
 
 const COMPONENT_SLUG_MAPPING = {
@@ -30,7 +30,7 @@ const COMPONENT_SLUG_MAPPING = {
   },
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled('div')`
   display: flex;
   justify-content: center;
   left: 0;
@@ -39,7 +39,7 @@ const Wrapper = styled.div`
   width: 100%;
 `
 
-const View = styled.div`
+const View = styled('div')`
   min-width: 300px;
 `
 

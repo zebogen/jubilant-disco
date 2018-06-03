@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Input } from 'semantic-ui-react';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 import Results from 'src/Search/components/Results';
 
-const SearchBar = styled.div`
+const SearchBar = styled('div')`
   margin-top: 2em;
 `
 

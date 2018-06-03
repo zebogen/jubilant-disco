@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 import { Grid, Header } from 'semantic-ui-react';
 import TmdbImage from '/shared/components/TmdbImage';
 import AddToWatchList from '/AddToWatchList';
 
-const ReleaseDate = styled.p`
+const ReleaseDate = styled('p')`
   color: slategray;
   font-size: larger;
 `
 
-const Overview = styled.p`
+const Overview = styled('p')`
   font-size: 1.1em;
 `
 

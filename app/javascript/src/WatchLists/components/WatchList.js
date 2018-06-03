@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Item } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from 'react-emotion';
 import TmdbImage from '/shared/components/TmdbImage';
 import RemoveButton from './RemoveButton';
 
-const ImagesWrapper = styled.div`
+const ImagesWrapper = styled('div')`
   align-items: center;
   display: inline-flex;
   margin-right: ${props => (props.children.length - 1) * -50}px;
 `
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled('div')`
   box-shadow: 1px;
   transition: 250ms;
   transform: translateX(${props => props.index * -50}px);
@@ -28,12 +28,12 @@ const ImageWrapper = styled.div`
   }
 `
 
-const DetailsWrapper = styled.div`
+const DetailsWrapper = styled('div')`
   display: inline-block;
   vertical-align: top;
 `
 
-const WatchListHeader = styled.header`
+const WatchListHeader = styled('header')`
   font-size: ${20 / 14}em;
   margin-bottom: ${8 / 14}em;
 `
