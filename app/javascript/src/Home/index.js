@@ -6,7 +6,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Loader active size="large" />
+        Welcome to FilmBFF.
       </div>
     );
   }
