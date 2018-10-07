@@ -35,6 +35,18 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
+  field :updateWatchList, Types::WatchListType do
+    argument :watchListId, !types.ID
+    argument :name, types.String
+    argument :notes, types.String
+
+    resolve ->(_obj, args, ctx) {
+      watch_list = ctx[:current_user].watch_lists.find(args.watchListId)
+      watch_list.update!(args.to_h.slice(:name, :notes))
+      watch_list
+    }
+  end
+
   field :removeFromWatchList, Types::WatchListType do
     argument :watchListId, !types.ID
     argument :movieId, !types.ID
