@@ -5,6 +5,8 @@ class Movie < ApplicationRecord
   has_many :watch_lists, through: :watch_list_movies
   has_many :user_movies, dependent: :destroy
 
+  validates :tmdb_id, presence: true, uniqueness: true
+
   after_create :fetch_tmdb_json
 
   private
